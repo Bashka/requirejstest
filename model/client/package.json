@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "",
+  "dependencies": {
+      "grunt": "~0.4.2",
+      "grunt-cli": "~0.1.11",
+      "grunt-contrib-jade": "~0.9.1",
+      "grunt-contrib-concat": "~0.3.0",
+      "grunt-contrib-clean": "~0.5.0",
+      "grunt-contrib-copy": "~0.5.0",
+      "grunt-contrib-symlink": "~0.3.0",
+      "MD5": "~1.2.1"
+  },
+  "devDependencies": {
+      "grunt-contrib-uglify": "^0.4.0",
+      "grunt-contrib-watch": "^0.6.1"
+    },
+  "repository": {},
+  "author": "",
+  "license": "none"
+}

@@ -1,1 +1,0 @@
-../../../model/client/js/vendor/require.js

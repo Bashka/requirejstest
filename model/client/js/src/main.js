@@ -4,7 +4,7 @@ require.config({
   }
 });
 
-require(['jquery'], function(jq){
+require([], function(){
   var routermap = {
     'moderator': '/moderator',
     'index': '/$',

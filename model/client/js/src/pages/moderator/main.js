@@ -1,9 +1,11 @@
 define('pages/moderator/main', function(require){
   return {
     run: function(){
-      require(['api/moderator'], function(moderator){
-        moderator.query();
-      })
+      if(require.specified('api/moderator')){
+        require(['api/moderator'], function(moderator){
+          moderator.query();
+        })
+      }
     }
   };
 });

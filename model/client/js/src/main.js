@@ -1,10 +1,11 @@
 require.config({
+  baseUrl: '/js/austero',
   paths: {
     jquery: '/js/vendor/jquery.min'
   }
 });
 
-require([], function(){
+require(['jquery'], function($){
   var routermap = {
     'moderator': '/moderator',
     'index': '/$',

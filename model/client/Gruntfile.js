@@ -32,6 +32,18 @@ module.exports = function (grunt) {
             dest: PUBLIC_JS + '/vendor/require.js'
           },
         ]
+      },
+      js_pages: {
+        src: CLIENT_JS + '/src/pages',
+        dest: PUBLIC_JS + '/austero/pages'
+      },
+      js_api: {
+        src: CLIENT_JS + '/src/api',
+        dest: PUBLIC_JS + '/austero/api'
+      },
+      js_main: {
+        src: CLIENT_JS + '/src/main.js',
+        dest: PUBLIC_JS + '/austero/main.js'
       }
     },
 
@@ -59,9 +71,15 @@ module.exports = function (grunt) {
     'default',
     [
       'clean',
-      'symlink',
+      'symlink:js_vendor',
       'concat',
       'copy'
     ]
   );
+  grunt.registerTask(
+    'dev',
+    [
+      'clean',
+      'symlink'
+    ]);
 };

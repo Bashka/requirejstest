@@ -25,17 +25,29 @@ module.exports = function (grunt) {
         files: [
           {
             src: CLIENT_JS + '/vendor/jquery.min.js',
-            dest: PUBLIC_JS + '/vendor/jquery.min.js'
+            dest: PUBLIC_JS + '/vendor/jquery.js'
           },
           {
             src: CLIENT_JS + '/vendor/require.js',
             dest: PUBLIC_JS + '/vendor/require.js'
           },
+          {
+            src: CLIENT_JS + '/vendor/angular.min.js',
+            dest: PUBLIC_JS + '/vendor/angular.js'
+          },
+          {
+            src: CLIENT_JS + '/vendor/react.js',
+            dest: PUBLIC_JS + '/vendor/react.js'
+          }
         ]
       },
       js_pages: {
         src: CLIENT_JS + '/src/pages',
         dest: PUBLIC_JS + '/austero/pages'
+      },
+      js_components: {
+        src: CLIENT_JS + '/src/components',
+        dest: PUBLIC_JS + '/austero/components'
       },
       js_api: {
         src: CLIENT_JS + '/src/api',
@@ -50,7 +62,8 @@ module.exports = function (grunt) {
     concat: {
       common: {
         src: [
-          CLIENT_JS + '/src/pages/*/*',
+          CLIENT_JS + '/src/components/*.js',
+          CLIENT_JS + '/src/pages/**/*.js',
           CLIENT_JS + '/src/main.js'
         ],
         dest: PUBLIC_JS + '/austero/main.js'

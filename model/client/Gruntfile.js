@@ -1,79 +1,86 @@
 module.exports = function (grunt) {
-  var CLIENT_JS   = './model/client/js',
-      CLIENT_CSS  = './model/client/css',
-      PUBLIC_JS   = './public/js',
-      PUBLIC_CSS  = './public/css';
+  var path  = require('path');
+
+  var CLIENT_JS         = path.join('.', 'model', 'client', 'js'),
+      CLIENT_CSS        = path.join('.', 'model', 'client/css'),
+      CLIENT_JS_VENDOR  = path.join(CLIENT_JS, 'vendor'),
+      CLIENT_JS_SRC     = path.join(CLIENT_JS, 'src'),
+
+      PUBLIC_JS         = path.join('.', 'public', 'js'),
+      PUBLIC_CSS        = path.join('.', 'public', 'css'),
+      PUBLIC_JS_VENDOR  = path.join(PUBLIC_JS, 'vendor'),
+      PUBLIC_JS_AUSTERO = path.join(PUBLIC_JS, 'austero');
 
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-symlink');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');
 
-  grunt.file.setBase('../../');
+  grunt.file.setBase(path.join('..', '..'));
 
   grunt.initConfig({
     clean: {
       js: [
-            PUBLIC_JS + '/austero/*', 
-            PUBLIC_JS + '/vendor/*'
+            path.join(PUBLIC_JS_AUSTERO, '*'),
+            path.join(PUBLIC_JS_VENDOR, '*')
           ],
-      css: ['./public/css/*']
+      css: [path.join(PUBLIC_CSS, '*')]
     },
 
     symlink: {
       js_vendor: {
         files: [
           {
-            src: CLIENT_JS + '/vendor/jquery.min.js',
-            dest: PUBLIC_JS + '/vendor/jquery.js'
+            src: path.join(CLIENT_JS_VENDOR, 'jquery.min.js'),
+            dest: path.join(PUBLIC_JS_VENDOR, 'jquery.js')
           },
           {
-            src: CLIENT_JS + '/vendor/require.js',
-            dest: PUBLIC_JS + '/vendor/require.js'
+            src: path.join(CLIENT_JS_VENDOR, 'require.js'),
+            dest: path.join(PUBLIC_JS_VENDOR, 'require.js')
           },
           {
-            src: CLIENT_JS + '/vendor/angular.min.js',
-            dest: PUBLIC_JS + '/vendor/angular.js'
+            src: path.join(CLIENT_JS_VENDOR, 'angular.min.js'),
+            dest: path.join(PUBLIC_JS_VENDOR, 'angular.js')
           },
           {
-            src: CLIENT_JS + '/vendor/react.js',
-            dest: PUBLIC_JS + '/vendor/react.js'
+            src: path.join(CLIENT_JS_VENDOR, 'react.js'),
+            dest: path.join(PUBLIC_JS_VENDOR, 'react.js')
           }
         ]
       },
       js_pages: {
-        src: CLIENT_JS + '/src/pages',
-        dest: PUBLIC_JS + '/austero/pages'
+        src: path.join(CLIENT_JS_SRC, 'pages'),
+        dest: path.join(PUBLIC_JS_AUSTERO, 'pages')
       },
       js_components: {
-        src: CLIENT_JS + '/src/components',
-        dest: PUBLIC_JS + '/austero/components'
+        src: path.join(CLIENT_JS_SRC, 'components'),
+        dest: path.join(PUBLIC_JS_AUSTERO, 'components')
       },
       js_api: {
-        src: CLIENT_JS + '/src/api',
-        dest: PUBLIC_JS + '/austero/api'
+        src: path.join(CLIENT_JS_SRC, 'api'),
+        dest: path.join(PUBLIC_JS_AUSTERO, 'api')
       },
       js_main: {
-        src: CLIENT_JS + '/src/main.js',
-        dest: PUBLIC_JS + '/austero/main.js'
+        src: path.join(CLIENT_JS_SRC, 'main.js'),
+        dest: path.join(PUBLIC_JS_AUSTERO, 'main.js')
       }
     },
 
     concat: {
       common: {
         src: [
-          CLIENT_JS + '/src/components/*.js',
-          CLIENT_JS + '/src/pages/**/*.js',
-          CLIENT_JS + '/src/main.js'
+          path.join(CLIENT_JS_SRC, 'components', '*.js'),
+          path.join(CLIENT_JS_SRC, 'pages', '**', '*.js'),
+          path.join(CLIENT_JS_SRC, 'main.js')
         ],
-        dest: PUBLIC_JS + '/austero/main.js'
+        dest: path.join(PUBLIC_JS_AUSTERO, 'main.js')
       }
     },
 
     copy: {
       moderator_api: {
-        src: [CLIENT_JS + '/src/api/moderator.js'],
-        dest: PUBLIC_JS + '/austero/',
+        src: [path.join(CLIENT_JS_SRC, 'api', 'moderator.js')],
+        dest: PUBLIC_JS_AUSTERO,
         expand: true,
         flatten: true
       }
